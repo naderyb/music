@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* base color variables (royal → navy → turquoise → sea) */
+:root{
+  --g-a: #062A6D; /* navy */
+  --g-b: #4169E1; /* royal */
+  --g-c: #30E3C4; /* turquoise */
+  --g-d: #0077B6; /* sea */
+  --overlay-alpha: 0.06;
+}
+
+/* app container uses variables so we can shift by mood class */
+.app-bg {
+  min-height: 100vh;
+  background: radial-gradient(1200px 600px at 10% 20%, rgba(48,227,196,var(--overlay-alpha)), transparent 18%),
+              radial-gradient(1000px 500px at 90% 80%, rgba(65,105,225,var(--overlay-alpha)), transparent 18%),
+              linear-gradient(120deg, var(--g-a) 0%, var(--g-b) 30%, var(--g-c) 65%, var(--g-d) 100%);
+  background-size: 300% 300%;
+  animation: bgShift 14s ease-in-out infinite;
+  transition: background 900ms ease, filter 600ms ease;
+  color: #e6eef8;
+}
+
+/* mood overrides: tweak the variables to shift the hues */
+.app-bg.joyful { --g-a: #05204b; --g-b: #3a6fe6; --g-c: #2fd9c0; --g-d: #0088b8; }
+.app-bg.serene { --g-a: #021831; --g-b: #274f9e; --g-c: #2ecfc2; --g-d: #006f9a; }
+.app-bg.melancholic { --g-a: #001028; --g-b: #223f8a; --g-c: #2bb8a9; --g-d: #005f87; }
+.app-bg.dramatic { --g-a: #170b2a; --g-b: #3d2fb0; --g-c: #2bd7b0; --g-d: #00689d; }
+.app-bg.calm { --g-a: #021a2e; --g-b: #2b4788; --g-c: #34d6c0; --g-d: #0078a8; }
+.app-bg.reflective { --g-a: #08122a; --g-b: #334aa0; --g-c: #30d4be; --g-d: #0076a7; }
+
+@keyframes bgShift {
+  0% { background-position: 0% 50%; filter: saturate(1); }
+  50% { background-position: 100% 50%; filter: saturate(1.03) hue-rotate(4deg); }
+  100% { background-position: 0% 50%; filter: saturate(1); }
+}
+
+/* glass card + accents */
+.card-glass {
+  background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px) saturate(120%);
+  color: #eaf3ff;
+}
+
+/* mood tag & emoji */
+.mood-tag {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.28rem 0.6rem;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.03);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* responsive iframe wrapper - reduced size */
+.video-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px; /* reduced height for smaller footprint */
+  margin-top: 0.75rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 8px 30px rgba(3,6,23,0.45);
+  background: rgba(0,0,0,0.12);
+}
+
+@media (max-width: 640px) {
+  .video-wrap { height: 160px; }
+}
+
+/* small utility */
+.neon {
+  text-shadow: 0 6px 24px rgba(48, 227, 196, 0.06), 0 2px 8px rgba(65,105,225,0.06);
+}
+
+.tech-ring {
+  box-shadow: 0 8px 30px rgba(3,6,23,0.45), inset 0 0 18px rgba(48,227,196,0.03);
+  border-radius: 12px;
+}
+
+/* small responsive tweaks */
+@media (max-width: 640px) {
+  .video-wrap { padding-bottom: 56.25%; }
+}
