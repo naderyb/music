@@ -184,7 +184,7 @@ function App() {
         </main>
 
         <footer className="w-full text-center text-xl text-slate-300 mt-4">
-              Classical Mood Music • built by nader hhh • nederbk n3mik
+              Classical Mood Music • built by nader hhh • nederbk n3mik • BL3
         </footer>
       </div>
     </div>
